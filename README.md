@@ -21,11 +21,11 @@
 https://github.com/hacoidev/ophim-core
 
 ## Install
-1. Tại thư mục của Project: `composer require ophimcms/ophim-xiao`
+1. Tại thư mục của Project: `composer require ophimcms/theme-xiao`
 2. Kích hoạt giao diện trong Admin Panel
 
 ## Update
-1. Tại thư mục của Project: `composer update ophimcms/ophim-xiao`
+1. Tại thư mục của Project: `composer update ophimcms/theme-xiao`
 2. Re-Activate giao diện trong Admin Panel
 
 ## Document
