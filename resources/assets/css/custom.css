@@ -1,0 +1,164 @@
+body {
+    font-family: "Roboto", sans-serif;
+    padding-top: 90px;
+}
+
+.myui-header__top {
+    position: fixed;
+}
+
+body.active {
+    padding-top: 60px;
+}
+
+[class*=col-],
+.myui-content__list li,
+.myui-vodlist__media.col li {
+    padding: 10px
+}
+
+.btn {
+    border-radius: 5px;
+}
+
+.myui-vodlist__thumb {
+    border-radius: 5px;
+    padding-top: 150%;
+    background: url(/themes/xiao/img/0e1ec6516.gif) no-repeat;
+}
+
+.myui-vodlist__thumb.square {
+    padding-top: 100%;
+    background: url(/themes/xiao/img/load_f.png) no-repeat;
+}
+
+.myui-vodlist__thumb.wide {
+    padding-top: 60%;
+    background: url(/themes/xiao/img/load_w.png) no-repeat;
+}
+
+.myui-vodlist__thumb.actor {
+    padding-top: 140%;
+}
+
+.flickity-prev-next-button.previous {
+    left: 10px;
+}
+
+.flickity-prev-next-button.next {
+    right: 10px;
+}
+
+.myui-sidebar {
+    padding: 0 0 0 20px;
+}
+
+.myui-panel {
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.myui-panel-mb {
+    margin-bottom: 20px;
+}
+
+.myui-player__item .fixed {
+    width: 500px;
+}
+
+.myui-vodlist__text li a,
+.myui-vodlist__media li {
+    padding: 10px 0;
+}
+
+.myui-screen__list {
+    padding: 10px 10px 0;
+}
+
+.myui-screen__list li {
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+.myui-page {
+    padding: 0 10px;
+}
+
+.myui-extra {
+    right: 20px;
+    bottom: 30px;
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1920px;
+    }
+
+    .container {
+        padding-left: 80px;
+        padding-right: 80px;
+    }
+
+    .container.min {
+        width: 1200px;
+        padding: 0;
+    }
+}
+
+@media (max-width: 767px) {
+
+    body,
+    body.active {
+        padding-bottom: 50px;
+    }
+
+    [class*=col-],
+    .myui-panel,
+    .myui-content__list li {
+        padding: 5px
+    }
+
+    .flickity-prev-next-button.previous {
+        left: 5px;
+    }
+
+    .flickity-prev-next-button.next {
+        right: 5px;
+    }
+
+    .myui-vodlist__text li a,
+    .myui-vodlist__media li {
+        padding: 10px 0;
+    }
+
+    .myui-screen__list {
+        padding: 10px 5px 0;
+    }
+
+    .myui-screen__list li {
+        margin-bottom: 5px;
+        margin-right: 5px;
+    }
+
+    .myui-extra {
+        right: 20px;
+        bottom: 80px;
+    }
+
+    .myui-page {
+        padding: 0 5px;
+    }
+
+    .pic-tag.pic-tag-top .tag {
+        font-size: 10px;
+        font-weight: 600;
+    }
+}
+
+.myui-topbg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+}
