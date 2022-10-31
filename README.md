@@ -28,6 +28,11 @@ https://github.com/hacoidev/ophim-core
 1. Tại thư mục của Project: `composer update ophimcms/theme-xiao`
 2. Re-Activate giao diện trong Admin Panel
 
+## Note
+- Một vài lưu ý quan trọng của các nút chức năng:
+    + `Activate` và `Re-Activate` sẽ publish toàn bộ file js,css trong themes ra ngoài public của laravel.
+    + `Reset` reset lại toàn bộ cấu hình của themes
+    
 ## Document
 ### List
 - Trang chủ: `display_label|relation|find_by_field|value|limit|show_more_url|show_template (section_thumb_1_col|section_thumb_2_col)`

@@ -8,7 +8,7 @@ $menu = \Ophim\Core\Models\Menu::getTree();
     <link rel="stylesheet" href="/themes/xiao/css/mytheme-font.css" type="text/css" />
     <link rel="stylesheet" href="/themes/xiao/css/mytheme-ui.css" type="text/css" />
     <link rel="stylesheet" href="/themes/xiao/css/mytheme-site.css" type="text/css" />
-    <link rel="stylesheet" href="/themes/xiao/css/mytheme-color0.css" type="text/css" name="default" />
+    <link rel="stylesheet" href="/themes/xiao/css/mytheme-color2.css" type="text/css" name="default" />
     <link rel="stylesheet" href="/themes/xiao/css/mytheme-color0.css" type="text/css" name="skin" disabled />
     <link rel="stylesheet" href="/themes/xiao/css/mytheme-color2.css" type="text/css" name="skin" disabled />
     <link rel="stylesheet" href="/themes/xiao/css/layer.css" type="text/css" />
