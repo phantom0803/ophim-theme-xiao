@@ -1,5 +1,5 @@
 <div class="myui-vodlist__box"><a class="myui-vodlist__thumb lazyload" href="{{ $movie->getUrl() }}"
-        title="{{ $movie->name }}" data-original="{{ $movie->thumb_url }}"><span class="play hidden-xs"></span><span
+        title="{{ $movie->name }}" data-original="{{ $movie->getThumbUrl() }}"><span class="play hidden-xs"></span><span
             class="pic-tag pic-tag-top"><span class="tag"
                 style="background-color: #ff9900;">{{ $movie->episode_current }}</span></span><span
             class="pic-text text-right"></span></a>

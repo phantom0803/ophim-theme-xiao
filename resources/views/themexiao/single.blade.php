@@ -71,7 +71,7 @@
                     <div class="myui-content__thumb">
                         <a class="myui-vodlist__thumb picture" href="/watch/black-adam" title="黑亚当">
                             <img class="lazyload" src="/themes/xiao/img/0e1ec6516.gif"
-                                data-original="{{ $currentMovie->thumb_url }}" />
+                                data-original="{{ $currentMovie->getThumbUrl() }}" />
                             <span class="play hidden-xs"></span>
                         </a>
                     </div>
@@ -81,15 +81,15 @@
 
                         <div class="data">
                             <input id="hint_current" type="hidden" value="" />
-                            <input id="score_current" type="hidden" value="{{ number_format($currentMovie->rating_star ?? 0, 1) }}" />
-                            <div id="star" data-score="{{ number_format($currentMovie->rating_star ?? 0, 1) }}" style="cursor: pointer;"></div>
+                            <input id="score_current" type="hidden" value="{{$currentMovie->getRatingStar()}}" />
+                            <div id="star" data-score="{{$currentMovie->getRatingStar()}}" style="cursor: pointer;"></div>
                             <span id="hint"></span>
                             <div id="div_average" style="">
-                                (<span class="average" id="average">{{ number_format($currentMovie->rating_star ?? 0, 1) }}</span> đ/<span id="rate_count"> / {{ $currentMovie->rating_count ?? 0 }}</span> lượt)
+                                (<span class="average" id="average">{{$currentMovie->getRatingStar()}}</span> đ/<span id="rate_count"> / {{$currentMovie->getRatingCount()}}</span> lượt)
                             </div>
                             <span class="hidden" itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating">
-                                <meta itemprop="ratingValue" content="{{ number_format($currentMovie->rating_star ?? 0, 1) }}" />
-                                <meta itemprop="ratingcount" content="{{ $currentMovie->rating_count ?? 0 }}" />
+                                <meta itemprop="ratingValue" content="{{$currentMovie->getRatingStar()}}" />
+                                <meta itemprop="ratingcount" content="{{$currentMovie->getRatingCount()}}" />
                                 <meta itemprop="bestRating" content="10" />
                                 <meta itemprop="worstRating" content="1" />
                             </span>

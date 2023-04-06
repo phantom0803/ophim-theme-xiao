@@ -98,19 +98,19 @@
                                     <div class="box-rating">
                                         <input id="hint_current" type="hidden" value="">
                                         <input id="score_current" type="hidden"
-                                            value="{{ number_format($currentMovie->rating_star ?? 0, 1) }}">
-                                        <div id="star" data-score="{{ number_format($currentMovie->rating_star ?? 0, 1) }}"
+                                            value="{{$currentMovie->getRatingStar()}}">
+                                        <div id="star" data-score="{{$currentMovie->getRatingStar()}}"
                                             style="cursor: pointer; float: left; width: 200px;">
                                         </div>
                                         <span id="hint"></span>
                                         <div id="div_average" style="float:left; line-height:20px; margin:0 5px; ">(<span class="average"
-                                                id="average">{{ number_format($currentMovie->rating_star ?? 0, 1) }}</span> đ/<span
+                                                id="average">{{$currentMovie->getRatingStar()}}</span> đ/<span
                                                 id="rate_count"> /
-                                                {{ $currentMovie->rating_count ?? 0 }}</span> lượt)
+                                                {{$currentMovie->getRatingCount()}}</span> lượt)
                                         </div>
                                         <meta itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating" />
-                                        <meta itemprop="ratingValue" content="{{ number_format($currentMovie->rating_star ?? 0, 1) }}" />
-                                        <meta itemprop="ratingcount" content="{{ $currentMovie->rating_count ?? 0 }}" />
+                                        <meta itemprop="ratingValue" content="{{$currentMovie->getRatingStar()}}" />
+                                        <meta itemprop="ratingcount" content="{{$currentMovie->getRatingCount()}}" />
                                         <meta itemprop="bestRating" content="10" />
                                         <meta itemprop="worstRating" content="1" />
                                     </div>
@@ -378,7 +378,7 @@
                     key: "{{ Setting::get('jwplayer_license') }}",
                     aspectratio: "16:9",
                     width: "100%",
-                    image: "{{ $currentMovie->poster_url ?: $currentMovie->thumb_url }}",
+                    image: "{{ $currentMovie->getThumbUrl() }}",
                     file: link,
                     playbackRateControls: true,
                     playbackRates: [0.25, 0.75, 1, 1.25],

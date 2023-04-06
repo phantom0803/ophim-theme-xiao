@@ -4,7 +4,7 @@
             @foreach ($recommendations as $movie)
                 <div class="item text-center @if ($loop->first) active @endif" >
                     <a title="{{$movie->name}}" href="{{$movie->getUrl()}}">
-                        <img style="width: 2074px; height: 690px;" class="img-responsive hidden-xs" src="{{$movie->poster_url ?: $movie->thumb_url}}" />
+                        <img style="width: 2074px; height: 690px;" class="img-responsive hidden-xs" src="{{$movie->getPosterUrl()}}" />
                     </a>
                 </div>
             @endforeach

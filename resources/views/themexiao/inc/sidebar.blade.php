@@ -47,7 +47,7 @@ $tops = Cache::remember('site.movies.tops', setting('site_cache_ttl', 5 * 60), f
                                 <div class="thumb"><a class="myui-vodlist__thumb img-xs-70 lazyload"
                                         href="{{ $top['data']->first()->getUrl() }}"
                                         title="{{ $top['data']->first()->name }}"
-                                        data-original="{{ $top['data']->first()->thumb_url }}"></a></div>
+                                        data-original="{{ $top['data']->first()->getThumbUrl() }}"></a></div>
                                 <div class="detail detail-side">
                                     <h4 class="title"><a href="{{ $top['data']->first()->getUrl() }}"><i
                                                 class="fa fa-angle-right text-muted pull-right"></i>{{ $top['data']->first()->name }}</a>
@@ -59,7 +59,7 @@ $tops = Cache::remember('site.movies.tops', setting('site_cache_ttl', 5 * 60), f
                                         <span class="text-muted"><i class="fa fa-eye"></i>
                                         </span>{{ $top['data']->first()->view_week }}
                                         <span class="text-muted"><i class="fa fa-star"></i>
-                                        </span>{{ number_format($top['data']->first()->rating_star ?? 0, 1) }}
+                                        </span>{{$top['data']->first()->getRatingStar()}}
                                     </p>
                                 </div>
                             </li>
