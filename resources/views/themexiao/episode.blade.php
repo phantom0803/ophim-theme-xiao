@@ -14,19 +14,21 @@
             display: flex;
         }
 
-        .myui-player__operate > li > a.streaming-server {
+        .myui-player__operate>li>a.streaming-server {
             cursor: pointer;
             padding: 4px 8px;
             color: #fff;
             margin-bottom: 2px;
         }
 
-        .myui-player__operate > li > a.streaming-server:hover {
+        .myui-player__operate>li>a.streaming-server:hover {
             background: #ff9e11;
         }
-        .myui-player__operate > li > a.streaming-server.active, .myui-content__list li a.active {
+
+        .myui-player__operate>li>a.streaming-server.active,
+        .myui-content__list li a.active {
             background-color: #f90;
-            background: linear-gradient(to right,#ff9900 0,#ff9f16 100%);
+            background: linear-gradient(to right, #ff9900 0, #ff9f16 100%);
         }
 
         @media(max-width:767px) {
@@ -66,16 +68,18 @@
                             <li class="hidden-xs">Chọn nguồn phát hoặc tải lại trang khi lỗi</li>
                             <li>
                                 @foreach ($currentMovie->episodes->where('slug', $episode->slug)->where('server', $episode->server) as $server)
-                                    <a data-id="{{ $server->id }}" data-link="{{ $server->link }}" data-type="{{ $server->type }}"
-                                        onclick="chooseStreamingServer(this)" class="btn btn-min btn-gray streaming-server">
-                                            <i class='icon-play'></i>
-                                            <span class='title'>Nguồn #{{ $loop->index + 1 }}</span>
-                                            <span class='loader'></span>
+                                    <a data-id="{{ $server->id }}" data-link="{{ $server->link }}"
+                                        data-type="{{ $server->type }}" onclick="chooseStreamingServer(this)"
+                                        class="btn btn-min btn-gray streaming-server">
+                                        <i class='icon-play'></i>
+                                        <span class='title'>Nguồn #{{ $loop->index + 1 }}</span>
+                                        <span class='loader'></span>
                                     </a>
                                 @endforeach
                             </li>
                             <li>
-                                <a href="javascript:;" onclick="window.location.reload()"><i class="fa fa-spinner"></i> Tải lại trang</a>
+                                <a href="javascript:;" onclick="window.location.reload()"><i class="fa fa-spinner"></i> Tải
+                                    lại trang</a>
                             </li>
                         </ul>
                         <style type="text/css">
@@ -91,38 +95,43 @@
                             <div class="myui-panel-box clearfix">
                                 <div class="col-pd clearfix">
                                     <div class="myui-panel__head active clearfix">
-                                        <h3 class="title text-fff">{{$currentMovie->name}}
-                                            <small class="text-red">Tập {{$episode->name}}</small>
+                                        <h3 class="title text-fff">{{ $currentMovie->name }}
+                                            <small class="text-red">Tập {{ $episode->name }}</small>
                                         </h3>
                                     </div>
                                     <div class="box-rating">
                                         <input id="hint_current" type="hidden" value="">
                                         <input id="score_current" type="hidden"
-                                            value="{{$currentMovie->getRatingStar()}}">
-                                        <div id="star" data-score="{{$currentMovie->getRatingStar()}}"
+                                            value="{{ $currentMovie->getRatingStar() }}">
+                                        <div id="star" data-score="{{ $currentMovie->getRatingStar() }}"
                                             style="cursor: pointer; float: left; width: 200px;">
                                         </div>
                                         <span id="hint"></span>
-                                        <div id="div_average" style="float:left; line-height:20px; margin:0 5px; ">(<span class="average"
-                                                id="average">{{$currentMovie->getRatingStar()}}</span> đ/<span
-                                                id="rate_count"> /
-                                                {{$currentMovie->getRatingCount()}}</span> lượt)
+                                        <div id="div_average" style="float:left; line-height:20px; margin:0 5px; ">(<span
+                                                class="average" id="average">{{ $currentMovie->getRatingStar() }}</span>
+                                            đ/<span id="rate_count"> /
+                                                {{ $currentMovie->getRatingCount() }}</span> lượt)
                                         </div>
-                                        <meta itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating" />
-                                        <meta itemprop="ratingValue" content="{{$currentMovie->getRatingStar()}}" />
-                                        <meta itemprop="ratingcount" content="{{$currentMovie->getRatingCount()}}" />
+                                        <meta itemprop="aggregateRating" itemscope
+                                            itemtype="https://schema.org/AggregateRating" />
+                                        <meta itemprop="ratingValue" content="{{ $currentMovie->getRatingStar() }}" />
+                                        <meta itemprop="ratingcount" content="{{ $currentMovie->getRatingCount() }}" />
                                         <meta itemprop="bestRating" content="10" />
                                         <meta itemprop="worstRating" content="1" />
                                     </div>
                                     <div class="text-muted">
                                         <ul class="nav nav-tabs pull-right">
                                             <li class="dropdown pb10 margin-0">
-                                                <a href="javascript:;" class="padding-0 text-fff" data-toggle="dropdown">Chọn Server ({{count($currentMovie->episodes->groupBy('server'))}}) <i class="fa fa-angle-down"></i></a>
+                                                <a href="javascript:;" class="padding-0 text-fff"
+                                                    data-toggle="dropdown">Chọn Server
+                                                    ({{ count($currentMovie->episodes->groupBy('server')) }}) <i
+                                                        class="fa fa-angle-down"></i></a>
                                                 <div class="dropdown-box bottom">
                                                     <ul class="item">
                                                         @foreach ($currentMovie->episodes->sortBy([['server', 'asc']])->groupBy('server') as $server => $data)
                                                             <li class="@if ($episode->server == $server) active @endif">
-                                                                <a href="#player{{$loop->index}}" tabindex="-1" data-toggle="tab">{{$server}}</a>
+                                                                <a href="#player{{ $loop->index }}" tabindex="-1"
+                                                                    data-toggle="tab">{{ $server }}</a>
                                                             </li>
                                                         @endforeach
                                                     </ul>
@@ -133,11 +142,14 @@
                                 </div>
                                 <div class="tab-content mb10">
                                     @foreach ($currentMovie->episodes->sortBy([['server', 'asc']])->groupBy('server') as $server => $data)
-                                        <div id="player{{$loop->index}}" class="tab-pane fade in @if ($episode->server == $server) active @endif clearfix">
+                                        <div id="player{{ $loop->index }}"
+                                            class="tab-pane fade in @if ($episode->server == $server) active @endif clearfix">
                                             <ul class="myui-content__list playlist clearfix " id="playlist">
                                                 @foreach ($data->sortByDesc('name', SORT_NATURAL)->groupBy('name') as $name => $item)
-                                                    <li class="col-lg-4 col-md-4 col-sm-5 col-xs-4 @if ($item->contains($episode)) active @endif">
-                                                        <a class="btn btn-min btn-gray @if ($item->contains($episode)) active @endif" href="{{ $item->sortByDesc('type')->first()->getUrl() }}">{{$name}}</a>
+                                                    <li
+                                                        class="col-lg-4 col-md-4 col-sm-5 col-xs-4 @if ($item->contains($episode)) active @endif">
+                                                        <a class="btn btn-min btn-gray @if ($item->contains($episode)) active @endif"
+                                                            href="{{ $item->sortByDesc('type')->first()->getUrl() }}">{{ $name }}</a>
                                                     </li>
                                                 @endforeach
                                             </ul>
@@ -153,24 +165,25 @@
                     <h2 class="font-18 text-muted">{{ $currentMovie->origin_name }}</h2>
                     <p class="data">
                         <span class="text-muted">Định dạng: </span>
-                        <a href="{{$currentMovie->type == 'series' ? '/danh-sach/phim-bo' : '/danh-sach/phim-le'}}">{{$currentMovie->type == 'series' ? 'Phim Bộ' : 'Phim Lẻ'}}</a>
+                        <a
+                            href="{{ $currentMovie->type == 'series' ? '/danh-sach/phim-bo' : '/danh-sach/phim-le' }}">{{ $currentMovie->type == 'series' ? 'Phim Bộ' : 'Phim Lẻ' }}</a>
                         <span class="split-line"></span>
                         <span class="text-muted hidden-xs">Quốc gia: </span>
                         {!! $currentMovie->regions->map(function ($region) {
-                            return '<a href="' .
-                                $region->getUrl() .
-                                '" title="' .
-                                $region->name .
-                                '" rel="region tag">' .
-                                $region->name .
-                                '</a>';
-                        })->implode(', ') !!}
+                                return '<a href="' .
+                                    $region->getUrl() .
+                                    '" title="' .
+                                    $region->name .
+                                    '" rel="region tag">' .
+                                    $region->name .
+                                    '</a>';
+                            })->implode(', ') !!}
                         <span class="split-line"></span>
                         <span class="text-muted hidden-xs">Năm sản xuất: </span>
-                        {{$currentMovie->publish_year}}
+                        {{ $currentMovie->publish_year }}
                         <span class="split-line"></span>
                         <span class="text-muted hidden-xs">Lượt xem: </span>
-                        <i class="fa fa-eye"></i> {{$currentMovie->view_total}}
+                        <i class="fa fa-eye"></i> {{ $currentMovie->view_total }}
                     </p>
                 </div>
             </div>
@@ -192,44 +205,44 @@
                         <p class="data">
                             <span class="text-muted">Thể loại: </span>
                             {!! $currentMovie->categories->map(function ($category) {
-                                return '<a href="' .
-                                    $category->getUrl() .
-                                    '" title="' .
-                                    $category->name .
-                                    '" rel="category tag">' .
-                                    $category->name .
-                                    '</a>';
-                            })->implode(', ') !!}
+                                    return '<a href="' .
+                                        $category->getUrl() .
+                                        '" title="' .
+                                        $category->name .
+                                        '" rel="category tag">' .
+                                        $category->name .
+                                        '</a>';
+                                })->implode(', ') !!}
                         </p>
 
                         <p>
                             <span class="text-muted">Đạo diễn: </span>
-                            @if(count($currentMovie->directors))
+                            @if (count($currentMovie->directors))
                                 {!! $currentMovie->directors->map(function ($director) {
-                                    return '<a href="' .
-                                        $director->getUrl() .
-                                        '" title="Đạo diễn ' .
-                                        $director->name .
-                                        '" rel="director tag">' .
-                                        $director->name .
-                                        '</a>';
-                                })->implode(', ') !!}
+                                        return '<a href="' .
+                                            $director->getUrl() .
+                                            '" title="Đạo diễn ' .
+                                            $director->name .
+                                            '" rel="director tag">' .
+                                            $director->name .
+                                            '</a>';
+                                    })->implode(', ') !!}
                             @else
                                 N/A
                             @endif
                         </p>
                         <p>
                             <span class="text-muted">Diễn viên: </span>
-                            @if(count($currentMovie->directors))
+                            @if (count($currentMovie->directors))
                                 {!! $currentMovie->actors->map(function ($actor) {
-                                    return '<a href="' .
-                                        $actor->getUrl() .
-                                        '" title="Diễn viên ' .
-                                        $actor->name .
-                                        '" rel="actor tag">' .
-                                        $actor->name .
-                                        '</a>';
-                                })->implode(', ') !!}
+                                        return '<a href="' .
+                                            $actor->getUrl() .
+                                            '" title="Diễn viên ' .
+                                            $actor->name .
+                                            '" rel="actor tag">' .
+                                            $actor->name .
+                                            '</a>';
+                                    })->implode(', ') !!}
                             @else
                                 N/A
                             @endif
@@ -247,7 +260,8 @@
                     </div>
                 </div>
                 <div class="myui-panel_bd">
-                    <div class="fb-comments" data-href="{{ $currentMovie->getUrl() }}" data-width="100%" data-colorscheme="dark" data-numposts="5" data-order-by="reverse_time" data-lazy="true"></div>
+                    <div class="fb-comments" data-href="{{ $currentMovie->getUrl() }}" data-width="100%"
+                        data-colorscheme="dark" data-numposts="5" data-order-by="reverse_time" data-lazy="true"></div>
                 </div>
             </div>
         </div>
@@ -262,9 +276,9 @@
                 <div class="tab-content myui-panel_bd">
                     <ul id="actor" class="myui-vodlist__bd tab-pane fade in active clearfix">
                         @foreach ($movie_related as $movie)
-                        <li class="col-lg-6 col-md-6 col-sm-4 col-xs-3">
-                            @include('themes::themexiao.inc.sections.movie_card')
-                        </li>
+                            <li class="col-lg-6 col-md-6 col-sm-4 col-xs-3">
+                                @include('themes::themexiao.inc.sections.movie_card')
+                            </li>
                         @endforeach
                     </ul>
                 </div>
@@ -290,7 +304,7 @@
     </script>
 
     <script>
-        var episode_id = {{$episode->id}};
+        var episode_id = {{ $episode->id }};
         const wrapper = document.getElementById('player-area');
         const vastAds = "{{ Setting::get('jwplayer_advertising_file') }}";
 
@@ -504,7 +518,7 @@
     </script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            const episode = '{{$episode->id}}';
+            const episode = '{{ $episode->id }}';
             let playing = document.querySelector(`[data-id="${episode}"]`);
             if (playing) {
                 playing.click();
@@ -518,17 +532,17 @@
         });
     </script>
 
-    <link href="{{ asset('/themes/hhtq/libs/jquery-raty/jquery.raty.css') }}" rel="stylesheet" />
-    <script src="{{ asset('/themes/hhtq/libs/jquery-raty/jquery.raty.js') }}"></script>
+    <link href="{{ asset('/themes/xiao/libs/jquery-raty/jquery.raty.css') }}" rel="stylesheet" />
+    <script src="{{ asset('/themes/xiao/libs/jquery-raty/jquery.raty.js') }}"></script>
 
     <script>
         var rated = false;
         jQuery(document).ready(function($) {
             $('#star').raty({
                 number: 10,
-                starHalf: '/themes/hhtq/libs/jquery-raty/images/star-half.png',
-                starOff: '/themes/hhtq/libs/jquery-raty/images/star-off.png',
-                starOn: '/themes/hhtq/libs/jquery-raty/images/star-on.png',
+                starHalf: '/themes/xiao/libs/jquery-raty/images/star-half.png',
+                starOff: '/themes/xiao/libs/jquery-raty/images/star-off.png',
+                starOn: '/themes/xiao/libs/jquery-raty/images/star-on.png',
                 click: function(score, evt) {
                     if (!rated) {
                         $.ajax({
@@ -557,5 +571,4 @@
     </script>
 
     {!! setting('site_scripts_facebook_sdk') !!}
-
 @endpush
